@@ -45,14 +45,15 @@ public class DroneController {
                 .build();
     }
 
-    @RequestMapping(path = "load/{drone-id}", method = RequestMethod.POST,
+    @RequestMapping(path = "get-medication-load/{drone-serial}", method = RequestMethod.POST,
             consumes = { MediaType.APPLICATION_JSON_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE })
-    public RESTResponse loadMedication(@Valid @RequestBody LoadMedicationReq request, @PathVariable("drone-id") String droneId) {
+    public RESTResponse getMedicationLoad(@PathVariable("drone-serial") String droneSerial) {
 
-        droneService.load(droneId, modelMapper.map(request, MedicationDTO.class));
         return RESTResponseManager.headerBuilder(HttpStatus.CREATED)
                 .bodyBuilder()
+                .setBodyAttribute("serial_number", droneSerial)
+                .setBodyAttribute("medication_load", droneService.checkMedicationLoad(droneSerial))
                 .responseBuilder()
                 .build();
     }
@@ -66,6 +67,20 @@ public class DroneController {
         return RESTResponseManager.headerBuilder(HttpStatus.CREATED)
                 .bodyBuilder()
                 .setBodyAttribute("drones", availableDroneList)
+                .responseBuilder()
+                .build();
+    }
+
+    @RequestMapping(path = "battery-level/{drone-serial}", method = RequestMethod.GET,
+            consumes = { MediaType.APPLICATION_JSON_VALUE },
+            produces = { MediaType.APPLICATION_JSON_VALUE })
+    public RESTResponse getBatteryLevel(@PathVariable("drone-serial") String droneSerial) {
+
+        droneService.getDroneBatteryLevel(droneSerial);
+        return RESTResponseManager.headerBuilder(HttpStatus.CREATED)
+                .bodyBuilder()
+                .setBodyAttribute("serial_number", droneSerial)
+                .setBodyAttribute("battery_level", droneService.getDroneBatteryLevel(droneSerial))
                 .responseBuilder()
                 .build();
     }

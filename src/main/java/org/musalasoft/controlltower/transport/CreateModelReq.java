@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Data
 @NoArgsConstructor
@@ -14,6 +15,7 @@ import javax.validation.constraints.NotNull;
 public class CreateModelReq {
 
     @NonNull
+    @Size(max = 20)
     private String name;
 
     @NotNull

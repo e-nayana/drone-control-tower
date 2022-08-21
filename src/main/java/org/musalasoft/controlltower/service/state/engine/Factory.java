@@ -7,21 +7,28 @@ public class Factory {
 
     public static class DroneState {
         public static State getState(State.States state) {
+            if(state == null) return new IdealState();
             switch (state) {
-                case IDLE:
-                    return new IdealState();
                 case LOADING:
                     return new LoadingState();
+                case LOADED:
+                    return new LoadedState();
+                case DELIVERING:
+                    return new DeliveringState();
+                case DELIVERED:
+                    return new DeliveredState();
+                case RETURNING:
+                    return new ReturningState();
                 default:
-                    return null;
+                    return new IdealState();
             }
 
         }
     }
 
     public static class DroneController {
-        public static Controller getController(Drone drone) {
-            return new Controller(drone, DroneState.getState(drone.getState()));
+        public static ControlPanel getController(Drone drone) {
+            return new ControlPanel(drone, DroneState.getState(drone.getState()));
         }
     }
 

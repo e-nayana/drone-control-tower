@@ -9,10 +9,8 @@ import org.musalasoft.controlltower.domain.service.state.engine.State;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterDroneDTO {
-
     private String serialNumber;
     private String model;
     private Integer weightLimit;
     private Integer batteryCapacity;
-    private State.States state;
 }

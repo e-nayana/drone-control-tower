@@ -1,4 +1,6 @@
-INSERT INTO model (id,name,weight_limit,created_at,updated_at) VALUES ('Lightweight','Lightweight',500,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
---                                                                    ('Middleweight','Middleweight',500,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP),
---                                                                    ('Cruiserweight','Cruiserweight',500,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP),
---                                                                    ('Heavyweight','Heavyweight',500,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+INSERT INTO model (id,name,weight_limit) VALUES ('Lightweight','Lightweight',500);
+INSERT INTO model (id,name,weight_limit) VALUES ('Middleweight','Middleweight',500);
+INSERT INTO model (id,name,weight_limit) VALUES ('Cruiserweight','Cruiserweight',500);
+INSERT INTO model (id,name,weight_limit) VALUES ('Heavyweight','Heavyweight',500);
+
+INSERT INTO fleet (id,name) VALUES ('default','default');

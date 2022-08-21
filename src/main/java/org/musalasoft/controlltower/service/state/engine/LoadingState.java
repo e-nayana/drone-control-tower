@@ -9,16 +9,36 @@ import org.musalasoft.controlltower.domain.service.state.engine.State;
 @AllArgsConstructor
 public class LoadingState implements State {
     @Override
-    public void startLoading(Controller context) {
+    public void startLoading(ControlPanel context) {
         throw new DroneStateEngineException("This drone is already being loaded");
     }
 
     @Override
-    public void completeLoading(Controller context) {
-        if(context.getDrone().getBatterCapacity() < 20){
-            throw new DroneStateEngineException("Battery capacity is not enough for delivering. current capacity "+ context.getDrone().getBatterCapacity() +"%");
+    public void completeLoading(ControlPanel context) {
+        if(context.getDrone().getBatteryCapacity() < 20){
+            throw new DroneStateEngineException("Battery capacity is not enough for delivering. current capacity "+ context.getDrone().getBatteryCapacity() +"%");
         }
         context.setState(Factory.DroneState.getState(States.LOADED));
+    }
+
+    @Override
+    public void startDelivery(ControlPanel context) {
+        throw new DroneStateEngineException("Method not allow at this state");
+    }
+
+    @Override
+    public void completeDelivery(ControlPanel context) {
+        throw new DroneStateEngineException("Method not allow at this state");
+    }
+
+    @Override
+    public void returning(ControlPanel context) {
+        throw new DroneStateEngineException("Method not allow at this state");
+    }
+
+    @Override
+    public void finishJourney(ControlPanel context) {
+        throw new DroneStateEngineException("Method not allow at this state");
     }
 
     @Override

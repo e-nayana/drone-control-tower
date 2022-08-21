@@ -1,5 +1,6 @@
 package org.musalasoft.controlltower.transport;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class RegisterDroneRq {
     @NonNull
     @Size(max = 100)
     @Pattern(regexp = "^[a-zA-Z0-9-]*$")
+    @JsonProperty("serial_number")
     private String serialNumber;
 
     @NonNull
@@ -24,13 +26,12 @@ public class RegisterDroneRq {
 
     @NonNull
     @Max(500)
+    @JsonProperty("weight_limit")
     private Integer weightLimit;
 
     @NonNull
     @Max(100)
+    @JsonProperty("battery_capacity")
     private Integer batteryCapacity;
-
-    @NonNull
-    private DroneState state;
 
 }

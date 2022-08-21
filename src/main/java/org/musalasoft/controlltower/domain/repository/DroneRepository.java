@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface DroneRepository extends JpaRepository<Drone, String> {
-    List<Drone> getDroneByStateAndAndBatterCapacityGreaterThan(State.States states, Integer batteryCapacity);
+    List<Drone> getDroneByStateAndAndBatteryCapacityGreaterThan(State.States states, Integer batteryCapacity);
     Drone getDroneBySerialNumber(String serialNumber);
 }
