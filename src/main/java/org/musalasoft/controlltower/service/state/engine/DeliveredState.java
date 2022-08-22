@@ -27,6 +27,7 @@ public class DeliveredState implements State {
 
     @Override
     public void returning(ControlPanel context) {
+        context.getDrone().getMedication().setIsActive(false);
         context.setState(Factory.DroneState.getState(States.RETURNING));
     }
 

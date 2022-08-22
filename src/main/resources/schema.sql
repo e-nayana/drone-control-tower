@@ -36,9 +36,10 @@ CREATE TABLE medication
     id          VARCHAR(255) PRIMARY KEY,
     drone_id        VARCHAR(250) NOT NULL,
     name        VARCHAR(250) NOT NULL,
+    code VARCHAR(250) NOT NULL,
     image_url        VARCHAR(250) NOT NULL,
     weight INT DEFAULT 0,
-    is_active BOOLEAN default TRUE,
+    is_active BOOLEAN default true,
     created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

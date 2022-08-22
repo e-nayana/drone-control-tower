@@ -6,6 +6,7 @@ import org.musalasoft.controlltower.domain.entity.Drone;
 import org.musalasoft.controlltower.domain.entity.Medication;
 import org.musalasoft.controlltower.domain.excepion.ServiceLevelException;
 import org.musalasoft.controlltower.domain.repository.DroneRepository;
+import org.musalasoft.controlltower.domain.repository.MedicationRepository;
 import org.musalasoft.controlltower.domain.service.DroneControlTowerService;
 import org.musalasoft.controlltower.service.state.engine.ControlPanel;
 import org.musalasoft.controlltower.service.state.engine.Factory;
@@ -16,12 +17,15 @@ import org.springframework.stereotype.Service;
 public class DroneControlTowerServiceImpl implements DroneControlTowerService {
 
     private DroneRepository droneRepository;
+
+    private MedicationRepository medicationRepository;
     private ModelMapper modelMapper;
 
     @Autowired
-    public DroneControlTowerServiceImpl(DroneRepository droneRepository, ModelMapper modelMapper) {
+    public DroneControlTowerServiceImpl(DroneRepository droneRepository, ModelMapper modelMapper, MedicationRepository medicationRepository) {
         this.droneRepository = droneRepository;
         this.modelMapper = modelMapper;
+        this.medicationRepository = medicationRepository;
     }
 
     @Override
@@ -30,8 +34,10 @@ public class DroneControlTowerServiceImpl implements DroneControlTowerService {
         if (drone == null) {
             throw new ServiceLevelException("Cannot find the drone by serial id-" + droneSerial);
         }
-        drone.setMedication(modelMapper.map(medicationDTO, Medication.class));
-
+        Medication medication = modelMapper.map(medicationDTO, Medication.class);
+        medication.setDrone(drone);
+        medication = medicationRepository.save(medication);
+        drone.setMedication(medication);
         /*
            Handle drone state cycle by state engine.
          */

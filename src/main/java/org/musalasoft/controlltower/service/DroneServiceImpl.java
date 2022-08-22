@@ -57,6 +57,7 @@ public class DroneServiceImpl implements DroneService {
         if(drone == null){
             throw new ServiceLevelException("cannot find a drone for serial number " + droneSerial);
         }
+
         return drone.getMedication();
 
     }

@@ -1,5 +1,6 @@
 package org.musalasoft.controlltower.transport;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,8 @@ public class LoadMedicationReq {
 
     @NotNull
     @Pattern(regexp = "^[A-Z0-9_]*$")
-    private Integer code;
+    private String code;
 
+    @JsonProperty("image_url")
     private String imageUrl;
 }

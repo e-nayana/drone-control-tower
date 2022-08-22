@@ -1,5 +1,6 @@
 package org.musalasoft.controlltower.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,7 @@ public class Drone {
 
     @OneToOne(fetch = FetchType.EAGER,
             mappedBy = "drone")
+    @JsonIgnoreProperties("drone")
     private Medication medication;
 
     @Column(name = "battery_capacity")

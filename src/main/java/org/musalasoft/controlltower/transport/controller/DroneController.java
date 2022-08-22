@@ -45,7 +45,7 @@ public class DroneController {
                 .build();
     }
 
-    @RequestMapping(path = "get-medication-load/{drone-serial}", method = RequestMethod.POST,
+    @RequestMapping(path = "get-medication-load/{drone-serial}", method = RequestMethod.GET,
             consumes = { MediaType.APPLICATION_JSON_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public RESTResponse getMedicationLoad(@PathVariable("drone-serial") String droneSerial) {

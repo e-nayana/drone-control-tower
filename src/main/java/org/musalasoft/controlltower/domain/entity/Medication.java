@@ -1,11 +1,13 @@
 package org.musalasoft.controlltower.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -30,10 +32,12 @@ public class Medication {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "drone_id", referencedColumnName = "id")
+    @Where(clause = "is_active=true")
+    @JsonIgnoreProperties("medication")
     private Drone drone;
 
     @Column(name = "is_active")
-    private Boolean isActive;
+    private Boolean isActive = true;
 
     @CreationTimestamp
     @Column(name = "created_at")
