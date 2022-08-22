@@ -11,7 +11,7 @@
     <groupId>org.musalasoft</groupId>
     <artifactId>musalasoft-drone-control-tower</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>Drone control tower</name>
     <description>Drone control tower</description>
     <properties>
